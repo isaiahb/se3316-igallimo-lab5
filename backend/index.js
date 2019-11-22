@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 //connect to db
-const mongoURL = "mongodb+srv://isaiah:1qa2ws@development-zd17r.mongodb.net/test?retryWrites=true&w=majority";
+const mongoURL = process.env.MONGO_URL;
 mongoose.connect(mongoURL, {useNewUrlParser:true, useUnifiedTopology: true});
 var db = mongoose.connection;
 db.once('open', () => console.log("Connected to mongo database"));
