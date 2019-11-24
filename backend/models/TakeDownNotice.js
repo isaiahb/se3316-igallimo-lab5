@@ -7,7 +7,6 @@ let TakeDownNotice = new Schema({
 	dateSent: Date,
 	dateReceived: Date,
 	dateHandled: Date,
-	
 });
 
 module.exports = mongoose.model('TakeDownNotice', TakeDownNotice);
