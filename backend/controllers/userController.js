@@ -56,10 +56,10 @@ passport.use(new GoogleStrategy({
 
 		// console.log(profile);
 		console.log(profile);
-	
-		let user = await User.findOne({email: profile._json.email});
+
+		let user = await User.findOne({ email: profile._json.email });
 		if (!user) {
-			user = await User.create({email: profile._json.email, verified: true, manager: email == managerEmail, deactivated: false});
+			user = await User.create({ email: profile._json.email, verified: true, manager: email == managerEmail, deactivated: false });
 		}
 		console.log(`user = ${user}`);
 		return cb(null, user);//null, user);
@@ -123,6 +123,50 @@ async function verify(req, res) {
 
 }
 
+function login(req, res) {
+
+	//Checks if a user exists with this username
+	User.findOne({ email: req.body.email }, function (err, user) {
+		if (err) {
+			return res.status(400).send(err);
+		}
+		if (!user) {
+			//no user found with that email address
+			return res.status(404).send("No User Found")
+		} else {
+			//user found, check if password matches
+			if (!bcrypt.compareSync(req.body.password, user.password)) {
+				return res.status(401).send("Invalid Password");
+			}
+			else {
+				//password matches so set jwt auth cookie and return user object
+				//get jwt and set cookie
+				res.cookie('auth', generateJWT(user));
+				return res.json({ user: user });
+			}
+		}
+	});
+};
+
+// function forgotPassword(req, res) {
+// 		//Checks if a user exists with this username
+// 		User.findOne({ email: req.params.email }, function (err, user) {
+// 			if (err) {
+// 				return res.status(400).send(err);
+// 			}
+// 			if (!user) {
+// 				//no user found with that email address
+// 				return res.status(404).send("No User Found")
+// 			} else {
+// 				//user found, check if password matches
+				
+// 				//restore password
+// 			}
+// 		});
+// }
+
+
+exports.login = login;
 exports.deleteAllUsers = deleteAllUsers;
 exports.verify = verify;
 exports.signup = signup;

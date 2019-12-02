@@ -1,6 +1,8 @@
 const Song = require("../models/song");
 const Review = require("../models/review");
 
+Song.createIndex( { title: "text", artist: "text", album: "text", year:"text", genre: "text" } );
+
 function createSong(req, res) {
 	let songInfo = req.body.song;
 	let reviewInfo = req.body.review;
@@ -39,7 +41,13 @@ function getSongs(req, res) {
 }
 
 function searchSongs(req, res) {
-
+	Song.find({ $text: { $search: req.query.search }}, (err, songs)=> {
+		if(err) {
+			console.log(err);
+			return res.status(400).send(err);
+		}
+		return res.json({songs: songs});
+	});
 }
 
 function top10Songs(req, res) {
@@ -55,3 +63,12 @@ function top10Songs(req, res) {
 function deleteSong(req, res) {
 
 }
+
+
+
+
+exports.createSong = createSong;
+exports.getSongs = getSongs;
+exports.searchSongs = searchSongs;
+exports.top10Songs = top10Songs;
+exports.deleteSong = deleteSong;
