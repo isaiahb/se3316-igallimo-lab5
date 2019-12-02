@@ -16,8 +16,13 @@ async function auth(req, res, next) {
     //try to get auth jwt from cookies and load user
     try {
         var decoded = jwt.verify(req.cookies["auth"], privateKey);
-        req.user = await getUser(decoded.userId);
-        return next(); 
+		req.user = await getUser(decoded.userId);
+
+		//ensure the result of get user function is not null
+		if (req.user)
+			return next();
+		else
+			return res.status(401).send("unauthorized. must login"); 
     } catch(e) {
         
         //unauthorized
