@@ -12,9 +12,14 @@ let Song = new Schema({
 	comment: String,
 	"zero-byte": Boolean,
 	track: Number,
-	genre: "String", 
-	
+	genre: "String",
 
+	//reviewe info
+	reviewCount: {type: Number, default: 0},
+	averageRating: {type: Number},
+
+	hidden: {type: Boolean, default: false}
+	
 });
 
 module.exports = mongoose.model('Song', Song);
