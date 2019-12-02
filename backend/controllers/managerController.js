@@ -100,6 +100,26 @@ function getUsers(req, res){
 	});
 }
 
+
+function getSongsWithNotice(req, res) {
+	Song.find({takeDownNotice: true}, (err, songs)=>{
+		if(err) {
+			return res.status(400).send(err);
+		}
+		return res.json({songs});
+	});
+}
+
+function getAllSongs(req, res) {
+	Song.find((err, songs)=>{
+		if(err) {
+			return res.status(400).send(err);
+		}
+		return res.json({songs});
+	});
+}
+
+
 module.exports.hideSong = hideSong;
 module.exports.showSong = showSong;
 module.exports.activateUser = activateUser;
@@ -108,3 +128,6 @@ module.exports.grantManager = grantManager;
 module.exports.removeManager = removeManager;
 module.exports.getManagers = getManagers;
 module.exports.getUsers = getUsers;
+
+module.exports.getSongsWithNotice = getSongsWithNotice;
+module.exports.getAllSongs = getAllSongs;

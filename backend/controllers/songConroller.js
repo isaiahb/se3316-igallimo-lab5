@@ -59,7 +59,7 @@ function createSong(req, res) {
 }
 
 function getSongs(req, res) {
-	Song.find(req.query, (err, songs)=> {
+	Song.find({hidden: false}, (err, songs)=> {
 		if(err) {
 			console.log(err);
 			return res.status(400).send(err);

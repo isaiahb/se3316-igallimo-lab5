@@ -12,8 +12,12 @@ router.put('/removeManager/:userId', controller.removeManager);
 router.get('/managers/', controller.getManagers);
 router.get('/users/', controller.getUsers);
 
-router.put('/showSong/:songId', controller.showSong)
 router.put('/hideSong/:songId', controller.hideSong)
+router.put('/showSong/:songId', controller.showSong)
+
+router.get('/songsWithNotice/', controller.getSongsWithNotice);
+router.get('/allSongs/', controller.getAllSongs);
+
 
 //todo dcma takedown stuff
 

@@ -20,7 +20,6 @@ let Song = new Schema({
 
 	hidden: {type: Boolean, default: false},
 	takeDownNotice: {type: Boolean, default: false}
-	
 });//, { autoIndex: false });
 Song.index({'$**': 'text'});
 module.exports = mongoose.model('Song', Song);
