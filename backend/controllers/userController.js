@@ -123,6 +123,8 @@ async function verify(req, res) {
 
 }
 
+
+//todo onnly loggin if the accoount is verified
 function login(req, res) {
 
 	//Checks if a user exists with this username

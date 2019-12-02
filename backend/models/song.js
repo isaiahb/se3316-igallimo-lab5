@@ -18,7 +18,8 @@ let Song = new Schema({
 	reviewCount: {type: Number, default: 0},
 	averageRating: {type: Number},
 
-	hidden: {type: Boolean, default: false}
+	hidden: {type: Boolean, default: false},
+	takeDownNotice: {type: Boolean, default: false}
 	
 });//, { autoIndex: false });
 Song.index({'$**': 'text'});

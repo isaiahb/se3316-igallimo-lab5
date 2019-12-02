@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
+//todo define default values
 let User = new Schema({
     email : String,
     password : String,

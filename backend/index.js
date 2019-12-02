@@ -49,15 +49,20 @@ db.on('error', console.error.bind(console, "MongoDB connection error: "));
 //Routers
 const userRouter = require('./routes/userRouter');
 const songRouter = require('./routes/songRouter');
+const managerRouter = require('./routes/managerRouter');
 
 //middleware
 const authMiddleware = require("./middleware/authMiddleware");
+const managerMiddleware = require("./middleware/managerMiddleware");
 
 //Routes
 app.use('/api', userRouter);
 
 app.use(authMiddleware);
 app.use("/api", songRouter);
+
+app.use(managerMiddleware);
+app.use("/api/manager", managerRouter);
 
 
 //open web server
