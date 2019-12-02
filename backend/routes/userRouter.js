@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/userController');
+const generateJWT = require("../helper/generateJWT");
 
 //ROUTES
 router.post('/signup', controller.signup);
@@ -22,12 +23,14 @@ router.get('/auth/google', controller.passport.authenticate('google', { scope: [
 
 
 //todo change redirects
-
 router.get('/auth/google/callback', controller.passport.authenticate('google', { failureRedirect: '/login' }), function (req, res) {
 	// Successful authentication, redirect home.
 	console.log("success");
 	console.log(req.user);
 	//todo sucessfully logged in so set cookies or w/e
+	res.cookie('auth', generateJWT(req.user));
+	return res.json({ user: req.user });
+	
 	res.redirect('/');
 });
 

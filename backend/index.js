@@ -8,6 +8,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser')
 const passport = require("passport");
+mongoose.set('useCreateIndex', true);
+
 
 //use modules
 dotenv.config();
@@ -46,14 +48,17 @@ db.on('error', console.error.bind(console, "MongoDB connection error: "));
 
 //Routers
 const userRouter = require('./routes/userRouter');
+const songRouter = require('./routes/songRouter');
 
 //middleware
-// const authMiddleware = require("./middleware/authMiddleware");
+const authMiddleware = require("./middleware/authMiddleware");
 
 //Routes
 app.use('/api', userRouter);
-app.use('/api/privacy', (req, res) => res.send("cool p"));
-app.use('/api/terms', (req, res) => res.send("cool v"));
+
+app.use(authMiddleware);
+app.use("/api", songRouter);
+
 
 //open web server
 const PORT = process.env.PORT;

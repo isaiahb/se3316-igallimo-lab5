@@ -1,7 +1,8 @@
 const Song = require("../models/song");
 const Review = require("../models/review");
 
-Song.createIndex( { title: "text", artist: "text", album: "text", year:"text", genre: "text" } );
+// Song.createIndex(  );
+
 
 function createSong(req, res) {
 	let songInfo = req.body.song;
