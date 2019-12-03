@@ -72,7 +72,9 @@ passport.use(new GoogleStrategy({
 	}
 ));
 
-
+function isEmailValid(email) {
+	return email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) != null;
+}
 
 async function signup(req, res) {
 	let pass = req.body.password;
@@ -81,7 +83,9 @@ async function signup(req, res) {
 	let email = req.body.email;
 	let user;
 	let verificationCode = randomNumberGenerator(25);
-
+	if (!isEmailValid(email)) {
+		return res.status(400).send("email is not a valid email");
+	}
 	try {
 		user = await User.findOne({ email });
 		if (user) return res.status(400).send("email already in use");
@@ -112,7 +116,9 @@ async function verify(req, res) {
 			//generate auth token and set auth cookie so client is authenticated and call other api endpoints
 			var jwt = generateJWT(user);
 			res.cookie('auth', jwt);
-			res.send("verified succesfully");
+			res.redirect('http://localhost:4200/home');
+
+			// res.send("verified succesfully");
 		} else {
 			return res.status(404).send("in corect code");
 		}
@@ -143,8 +149,9 @@ function login(req, res) {
 			else {
 				//password matches so set jwt auth cookie and return user object
 				//get jwt and set cookie
-				res.cookie('auth', generateJWT(user));
-				return res.json({ user: user });
+				let auth = generateJWT(user);
+				res.cookie('auth', auth);
+				return res.json({ user: user, auth: auth});
 			}
 		}
 	});

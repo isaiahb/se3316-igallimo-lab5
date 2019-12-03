@@ -1,0 +1,10 @@
+<p>song works!</p>
+<div>
+	<p>Title: {{song.title}}</p>
+	<p>Artist : {{song.artist}}</p>
+	<button *ngIf="!showAll" click="toggle()"> show all</button>
+	<button *ngIf="showAll" click="toggle()"> hide all</button>
+	<div *ngIf="showAll">
+		<p>extra innfo</p>
+	</div>
+</div>
