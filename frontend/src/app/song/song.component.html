@@ -2,9 +2,28 @@
 <div>
 	<p>Title: {{song.title}}</p>
 	<p>Artist : {{song.artist}}</p>
-	<button *ngIf="!showAll" click="toggle()"> show all</button>
-	<button *ngIf="showAll" click="toggle()"> hide all</button>
+	<button *ngIf="!showAll" (click)="toggle()"> show all</button>
+	<button *ngIf="showAll" (click)="toggle()"> hide all</button>
 	<div *ngIf="showAll">
-		<p>extra innfo</p>
+		<p>album: {{song.album}}</p>
+		<p>year: {{song.year}}</p>
+		<p>review count: {{song.reviewCount}}</p>
+		<p>average rating: {{song.averageRating}}</p>
+
+		<p>comment: {{song.comment}}</p>
+		<p>track: {{song.track}}</p>
+		<p>genre: {{song.genre}}</p>
+		
+	</div>
+
+	<button *ngIf="!showReviews" (click)="toggleReviews()"> show reviews</button>
+	<button *ngIf="showReviews" (click)="toggleReviews()"> hide reviews</button>
+	<div *ngIf="showReviews">
+		<p >reviews</p>
+		<div *ngFor="let review of reviews">
+			<p>review: {{review.review}}</p>
+			<p>by: {{review.userEmail}}</p>
+			<p>rating: {{review.rating}}</p>
+		</div>
 	</div>
 </div>

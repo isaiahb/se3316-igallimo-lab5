@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 			let token = object["auth"];
 			console.log(token);
 			console.log(object);
-			this.cookieService.set( 'auth', token);
+			this.cookieService.set('auth', token);
     		// this.cookieValue = this.cookieService.get('Test');
 			
 		});

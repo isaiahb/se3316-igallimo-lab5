@@ -1,9 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import {HttpInterceptor} from "@angular/common/http";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class TokenService {
+@Injectable()
+export class TokenService implements HttpInterceptor{
 
-  constructor() { }
+	constructor(private cookieService: CookieService, private injector: Injector) {}
+
+	intercept(req, next) {
+		let tokenReq = req.clone({
+			setHeaders: {
+				auth: this.cookieService.get('auth')
+			}
+		});
+		return next.handle(tokenReq);
+	}
+
 }

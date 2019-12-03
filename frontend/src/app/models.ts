@@ -9,6 +9,7 @@ export interface User {
 
 export interface Song {
 	//ID3V1 properties
+	_id: String,
 	header: String,
 	title: {type: String, required: true},
 	artist: {type: String, required: true},
@@ -28,6 +29,7 @@ export interface Song {
 }
 
 export interface Review {
+	_id: String,
 	songId: String,
 	userId: String,
 	userEmail: {type: String},
@@ -37,6 +39,7 @@ export interface Review {
 }
 
 export interface TakeDownNotice {
+	_id: String,
 	songId: String,
 	dateSent: Date,
 	dateReceived: Date,

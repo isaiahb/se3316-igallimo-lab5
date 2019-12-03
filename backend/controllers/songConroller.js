@@ -134,7 +134,7 @@ async function createReview(req, res) {
 	let reviewInfo = req.body;
 	reviewInfo.songId = req.params.songId;
 	reviewInfo.userId = req.user._id;
-	reviewInfo.userEmail = req.user.emal;
+	reviewInfo.userEmail = req.user.email;
 	let song = await Song.findById(reviewInfo.songId, (err, song)=>{
 		if (err) {
 			if (!song) return res.status(404).send(err);
@@ -147,6 +147,7 @@ async function createReview(req, res) {
 			console.log(err);
 			return res.status(400).send(err);
 		}
+		console.log(review);
 
 		await updateAverageReviews(review.songId);
 		return res.json({review: review});
@@ -176,12 +177,12 @@ function editReview(req, res) {
 }
 
 function mostRecentReview(req, res) {
-	Review.findOne({songId: req.params.songId}).sort({date: -1}).exec((err, reviews)=> {
+	Review.findOne({songId: req.params.songId}).sort({date: -1}).exec((err, review)=> {
 		if(err) {
 			console.log(err);
 			return res.status(400).send(err);
 		}		
-		return res.json({reviews: reviews});
+		return res.json({review});
 	});
 }
 

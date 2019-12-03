@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { SongsComponent } from './songs/songs.component';
 import { SongComponent } from './song/song.component';
 import { CookieService } from 'ngx-cookie-service';
-
+import {TokenService} from "./token.service";
 
 @NgModule({
   declarations: [
@@ -35,6 +35,11 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   providers: [
 	  CookieService,
+	  {
+		  provide: HTTP_INTERCEPTORS,
+		  useClass: TokenService,
+		  multi: true
+	  }
   ],
   bootstrap: [AppComponent]
 })

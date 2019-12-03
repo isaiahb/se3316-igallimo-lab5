@@ -15,7 +15,16 @@ async function auth(req, res, next) {
 
     //try to get auth jwt from cookies and load user
     try {
-        var decoded = jwt.verify(req.cookies["auth"], privateKey);
+		var token = req.cookies["auth"];
+		if (!token) {
+			token = req.headers["auth"];
+			console.log("checking headers");
+			console.log(req.headers);
+		}
+		console.log("token: " + token);
+
+		var decoded = jwt.verify(token, privateKey);
+		
 		req.user = await getUser(decoded.userId);
 
 		//ensure the result of get user function is not null
