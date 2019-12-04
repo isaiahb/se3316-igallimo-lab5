@@ -18,6 +18,9 @@ import { SearchComponent } from './search/search.component';
 import { PopularComponent } from './popular/popular.component';
 import { NewSongComponent } from './new-song/new-song.component';
 import { ReviewComponent } from './review/review.component';
+import { SongAdminComponent } from './song-admin/song-admin.component';
+import { DmcaNoticeComponent } from './dmca-notice/dmca-notice.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { ReviewComponent } from './review/review.component';
     SearchComponent,
     PopularComponent,
     NewSongComponent,
-    ReviewComponent
+    ReviewComponent,
+    SongAdminComponent,
+    DmcaNoticeComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
