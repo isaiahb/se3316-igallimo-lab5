@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../http.service";
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router'
 
 @Component({
 	selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 	email: String;
 	password: String;
 
-	constructor(private http: HttpService, private cookieService: CookieService) { }
+	constructor(private http: HttpService, private cookieService: CookieService, private router: Router) { }
 
 	ngOnInit() {}
 	login() {
@@ -21,8 +22,7 @@ export class LoginComponent implements OnInit {
 			console.log(token);
 			console.log(object);
 			this.cookieService.set('auth', token);
-    		// this.cookieValue = this.cookieService.get('Test');
-			
+			this.router.navigateByUrl("/home");
 		});
 	}
 }

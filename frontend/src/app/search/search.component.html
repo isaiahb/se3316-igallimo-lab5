@@ -1,0 +1,4 @@
+<p>search songs</p>
+<input type="text" [(ngModel)]="search" />
+<button (click)="getSongs()">search</button>
+<app-song *ngFor="let song of songs" [song]="song"></app-song>

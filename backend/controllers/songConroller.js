@@ -25,22 +25,18 @@ async function updateAverageReviews(songId) {
 function createSong(req, res) {
 	let songInfo = req.body.song;
 	let reviewInfo = req.body.review;
+	console.log(req.body);
 
 	Song.create(songInfo, (err, song) => {
 		if(err) {
-			console.log(err);
+			// console.log(err);
 			return res.status(400).send(err);
 		}
 		if (reviewInfo) {
-			console.log("song");
-			console.log(song);
-			console.log("req.user");
-			console.log(req.user);
-
+		
 			reviewInfo.songId = song._id;
 			reviewInfo.userId = req.user._id;
 			reviewInfo.userEmail = req.user.emal;
-			console.log(req.user.email);
 			Review.create(reviewInfo, async (err, review) => {
 				if(err) {
 					console.log(err);

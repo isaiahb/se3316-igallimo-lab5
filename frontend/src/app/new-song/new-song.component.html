@@ -1,0 +1,47 @@
+
+<div class="card">
+	<p>Add song</p>
+
+	<p>
+		tite:
+		<input type="text" [(ngModel)]="title" />
+	</p>
+	<p>
+		artist:
+		<input type="text" [(ngModel)]="artist" />
+	</p>
+	<p>
+		album:
+		<input type="text" [(ngModel)]="album" />
+	</p>
+	<p>
+		year:
+		<input type="number" [(ngModel)]="year" />
+	</p>
+	<p>
+		genre:
+		<input type="text" [(ngModel)]="genre" />
+	</p>
+	<p>
+		track:
+		<input type="number" [(ngModel)]="track" />
+	</p>
+	<p>
+		header:
+		<input type="text" [(ngModel)]="header" />
+	</p>
+	<p>
+		comment:
+		<input type="text" [(ngModel)]="comment" />
+	</p>
+</div>
+
+<div class="card">
+	<p>Add Review</p>
+	<p>review: <input type="text" [(ngModel)]="review" /></p>
+	<p>rating: <input type="number" [(ngModel)]="rating" /></p>
+</div>
+
+
+
+<button (click)="create()">create song</button>

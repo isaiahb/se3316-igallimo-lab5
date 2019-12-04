@@ -14,6 +14,10 @@ import { SongsComponent } from './songs/songs.component';
 import { SongComponent } from './song/song.component';
 import { CookieService } from 'ngx-cookie-service';
 import {TokenService} from "./token.service";
+import { SearchComponent } from './search/search.component';
+import { PopularComponent } from './popular/popular.component';
+import { NewSongComponent } from './new-song/new-song.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import {TokenService} from "./token.service";
     HomeComponent,
     AdminComponent,
     SongsComponent,
-    SongComponent
+    SongComponent,
+    SearchComponent,
+    PopularComponent,
+    NewSongComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

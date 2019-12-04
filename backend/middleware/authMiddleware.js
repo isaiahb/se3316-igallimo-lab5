@@ -18,10 +18,8 @@ async function auth(req, res, next) {
 		var token = req.cookies["auth"];
 		if (!token) {
 			token = req.headers["auth"];
-			console.log("checking headers");
-			console.log(req.headers);
+
 		}
-		console.log("token: " + token);
 
 		var decoded = jwt.verify(token, privateKey);
 		

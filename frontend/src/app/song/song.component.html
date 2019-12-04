@@ -1,29 +1,42 @@
-<p>song works!</p>
-<div>
-	<p>Title: {{song.title}}</p>
+<div class="card">
+		
+	<h2>{{song.title}}</h2>
 	<p>Artist : {{song.artist}}</p>
 	<button *ngIf="!showAll" (click)="toggle()"> show all</button>
 	<button *ngIf="showAll" (click)="toggle()"> hide all</button>
 	<div *ngIf="showAll">
-		<p>album: {{song.album}}</p>
-		<p>year: {{song.year}}</p>
-		<p>review count: {{song.reviewCount}}</p>
-		<p>average rating: {{song.averageRating}}</p>
-
-		<p>comment: {{song.comment}}</p>
-		<p>track: {{song.track}}</p>
-		<p>genre: {{song.genre}}</p>
-		
+		<ul>
+			<li>album: {{song.album}}</li>
+			<li>year: {{song.year}}</li>
+			<li>review count: {{song.reviewCount}}</li>
+			<li>average rating: {{song.averageRating}}</li>
+			<li>comment: {{song.comment}}</li>
+			<li>track: {{song.track}}</li>
+			<li>genre: {{song.genre}}</li>
+		</ul>
 	</div>
-
+	<br>
 	<button *ngIf="!showReviews" (click)="toggleReviews()"> show reviews</button>
+	<br>
 	<button *ngIf="showReviews" (click)="toggleReviews()"> hide reviews</button>
 	<div *ngIf="showReviews">
-		<p >reviews</p>
-		<div *ngFor="let review of reviews">
+		<h3>reviews</h3>
+		<div *ngFor="let review of reviews" class="card2">
 			<p>review: {{review.review}}</p>
-			<p>by: {{review.userEmail}}</p>
-			<p>rating: {{review.rating}}</p>
+			<p *ngIf="review.userEmail">by: {{review.userEmail}}</p>
+			<p *ngIf="review.rating">rating: {{review.rating}}</p>
+		</div>
+	</div>
+
+	<!-- TODO only show if user is logged in -->
+	<div>
+		<button *ngIf="!seeAddReview" (click)="showAddReview()">add review</button>
+		<div *ngIf="seeAddReview" class="card2">
+			<h3>Review Song</h3>
+			<p>review: <input type="text" [(ngModel)]="review"/></p>
+			<p>rating: <input type="number" [(ngModel)]="rating"/></p>
+			<button (click)="submitReview()">submit review</button>
+			<button (click)="hideAddReview()">cancel</button>
 		</div>
 	</div>
 </div>

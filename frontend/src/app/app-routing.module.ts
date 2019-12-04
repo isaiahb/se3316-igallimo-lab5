@@ -6,6 +6,9 @@ import {SignupComponent} from "./signup/signup.component";
 import {HomeComponent} from "./home/home.component";
 import {AdminComponent} from "./admin/admin.component";
 import {SongsComponent} from "./songs/songs.component";
+import {SearchComponent} from "./search/search.component";
+import {PopularComponent} from "./popular/popular.component";
+import {NewSongComponent} from "./new-song/new-song.component";
 
 
 const routes: Routes = [
@@ -20,6 +23,11 @@ const routes: Routes = [
 		// ]
 	},
 	{path: "songs", component: SongsComponent,},
+	{path: "search", component: SearchComponent,},
+	{path: "popular", component: PopularComponent,},
+	
+	{path: "newSong", component: NewSongComponent,},
+
 	{path: "admin", component: AdminComponent},
 ];
 
